@@ -1,0 +1,9 @@
+[package]
+name = "metrics-opentelemetry"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+metrics = { version = "0.21.1", default-features = false }
+opentelemetry_api = { version = "0.20.0", default-features = false, features = ["metrics"] }
+tracing = { version = "0.1.40", default-features = false }
