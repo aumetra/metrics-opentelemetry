@@ -1,10 +1,10 @@
 use metrics::atomics::AtomicU64;
-use opentelemetry_api::metrics::{Counter, Histogram, UpDownCounter};
+use opentelemetry::metrics::{Counter, Histogram, UpDownCounter};
 use std::sync::atomic::Ordering;
 
 pub struct CounterFn {
     pub inner: Counter<u64>,
-    pub labels: Vec<opentelemetry_api::KeyValue>,
+    pub labels: Vec<opentelemetry::KeyValue>,
     pub last_value: AtomicU64,
 }
 
@@ -22,7 +22,7 @@ impl metrics::CounterFn for CounterFn {
 
 pub struct GaugeFn {
     pub inner: UpDownCounter<f64>,
-    pub labels: Vec<opentelemetry_api::KeyValue>,
+    pub labels: Vec<opentelemetry::KeyValue>,
     pub last_value: AtomicU64,
 }
 
@@ -46,7 +46,7 @@ impl metrics::GaugeFn for GaugeFn {
 
 pub struct HistogramFn {
     pub inner: Histogram<f64>,
-    pub labels: Vec<opentelemetry_api::KeyValue>,
+    pub labels: Vec<opentelemetry::KeyValue>,
 }
 
 impl metrics::HistogramFn for HistogramFn {

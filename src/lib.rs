@@ -7,18 +7,18 @@ use self::{
     storage::{MetricsDescription, MetricsType},
 };
 use metrics::atomics::AtomicU64;
-use opentelemetry_api::metrics::{Meter, Unit};
+use opentelemetry::metrics::{Meter, Unit};
 use std::{slice, sync::Arc};
 
 mod metrics_fn;
 mod storage;
 
-fn labels_to_keyvalue(labels: slice::Iter<'_, metrics::Label>) -> Vec<opentelemetry_api::KeyValue> {
+fn labels_to_keyvalue(labels: slice::Iter<'_, metrics::Label>) -> Vec<opentelemetry::KeyValue> {
     labels
         .map(|label| {
-            let key = opentelemetry_api::Key::new(label.key().to_string());
-            let value = opentelemetry_api::Value::from(label.value().to_string());
-            opentelemetry_api::KeyValue { key, value }
+            let key = opentelemetry::Key::new(label.key().to_string());
+            let value = opentelemetry::Value::from(label.value().to_string());
+            opentelemetry::KeyValue { key, value }
         })
         .collect()
 }
