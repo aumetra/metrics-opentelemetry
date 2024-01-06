@@ -78,7 +78,11 @@ impl metrics::Recorder for OpenTelemetryRecorder {
         );
     }
 
-    fn register_counter(&self, key: &metrics::Key) -> metrics::Counter {
+    fn register_counter(
+        &self,
+        key: &metrics::Key,
+        _metadata: &metrics::Metadata<'_>,
+    ) -> metrics::Counter {
         let key_name = metrics::KeyName::from(key.name().to_string());
         let mut counter_builder = self.meter.u64_counter(key.name().to_string());
 
@@ -98,7 +102,11 @@ impl metrics::Recorder for OpenTelemetryRecorder {
         }))
     }
 
-    fn register_gauge(&self, key: &metrics::Key) -> metrics::Gauge {
+    fn register_gauge(
+        &self,
+        key: &metrics::Key,
+        _metadata: &metrics::Metadata<'_>,
+    ) -> metrics::Gauge {
         let key_name = metrics::KeyName::from(key.name().to_string());
         let mut gauge_builder = self.meter.f64_up_down_counter(key.name().to_string());
 
@@ -118,7 +126,11 @@ impl metrics::Recorder for OpenTelemetryRecorder {
         }))
     }
 
-    fn register_histogram(&self, key: &metrics::Key) -> metrics::Histogram {
+    fn register_histogram(
+        &self,
+        key: &metrics::Key,
+        _metadata: &metrics::Metadata<'_>,
+    ) -> metrics::Histogram {
         let key_name = metrics::KeyName::from(key.name().to_string());
         let mut histogram_builder = self.meter.f64_histogram(key.name().to_string());
 

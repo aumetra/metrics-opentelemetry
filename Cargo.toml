@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-metrics = { version = "0.21.1", default-features = false }
+metrics = { version = "0.22.0", default-features = false }
 opentelemetry = { version = "0.21.0", default-features = false, features = ["metrics"] }
 tracing = { version = "0.1.40", default-features = false }
